@@ -20,7 +20,8 @@ const StyledButton = styled.button`
   width: auto;
   border-radius: ${({ theme }) => theme.shape.round};
   transition: box-shadow ${({ theme }) => theme.transition.default},
-    opacity ${({ theme }) => theme.transition.default};
+    opacity ${({ theme }) => theme.transition.default},
+    color ${({ theme }) => theme.transition.default};
 
   ${({ theme }) => theme.typography.button}
 

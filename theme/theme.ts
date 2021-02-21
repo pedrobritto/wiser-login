@@ -39,7 +39,7 @@ export const theme: DefaultTheme = {
       main: "#FF377F",
     },
     success: {
-      main: "green",
+      main: "#05c786",
     },
   },
   gradients: {
