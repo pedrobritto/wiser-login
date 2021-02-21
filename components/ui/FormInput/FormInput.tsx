@@ -18,7 +18,7 @@ const FormInput = styled.input<{ hasError?: string | boolean }>`
   outline: 0;
 
   :focus {
-    box-shadow: 0 0 0 3px ${({ theme }) => theme.palette.primary.light}55;
+    box-shadow: 0 0 0 3px ${({ theme }) => theme.palette.primary.light}aa;
   }
 
   ::placeholder {

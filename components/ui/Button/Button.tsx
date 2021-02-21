@@ -19,7 +19,8 @@ const StyledButton = styled.button`
 
   width: auto;
   border-radius: ${({ theme }) => theme.shape.round};
-  transition: box-shadow ${({ theme }) => theme.transition.default};
+  transition: box-shadow ${({ theme }) => theme.transition.default},
+    opacity ${({ theme }) => theme.transition.default};
 
   ${({ theme }) => theme.typography.button}
 
@@ -38,9 +39,8 @@ const StyledButton = styled.button`
   ${({ $elevation }) =>
     $elevation &&
     css`
-      :hover,
-      :focus {
-        box-shadow: 0px 1px 3px 0px #cf99db;
+      :hover {
+        box-shadow: 0px 2px 6px 0px #cf99dbaa;
       }
 
       box-shadow: 0px 10px 25px 0px #cf99db;

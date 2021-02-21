@@ -30,6 +30,7 @@ function Login() {
               layout="fill"
               objectFit="cover"
               alt="Foto de uma mulher utilizando um computador."
+              quality={75}
             />
           ) : (
             <Image
@@ -38,6 +39,7 @@ function Login() {
               objectFit="cover"
               height={500}
               width={500}
+              quality={75}
               alt="Foto de uma mulher utilizando um computador."
             />
           )}
