@@ -17,7 +17,12 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
     font-family: ${({ theme }) => theme.typography.fontFamily};
     font-size: ${({ theme }) => theme.typography.body1.fontSize};
+    line-height: ${({ theme }) => theme.typography.body1.lineHeight};
     color: ${({ theme }) => theme.palette.text.main};
+  }
+
+  a {
+    text-decoration: none;
   }
 
   h1 {

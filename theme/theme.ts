@@ -1,6 +1,8 @@
 import { spacing, spacingPx, spacingRem, pxToRem } from "./helpers";
 export { spacing, spacingPx, spacingRem, pxToRem };
 
+import { DefaultTheme } from "styled-components";
+
 const breakpoints = {
   xs: 400, // phone-portrait down
   sm: 600, // tablet-portrait up / phone-landscape up
@@ -9,7 +11,7 @@ const breakpoints = {
   xl: 1200, // desktop up
 };
 
-export const theme = {
+export const theme: DefaultTheme = {
   palette: {
     primary: {
       main: "#383E71",
@@ -53,11 +55,12 @@ export const theme = {
       if (breakpoints[key] > 0) {
         return `@media (max-width:${breakpoints[key] - 1}px)`;
       }
+
       return `@media (max-width:${breakpoints[key]}px)`;
     },
   },
   shape: {
-    round: pxToRem(5),
+    round: pxToRem(8),
   },
   transition: {
     default: "0.2s ease",
@@ -92,6 +95,7 @@ export const theme = {
     body1: {
       fontSize: pxToRem(16),
       fontWeight: "normal",
+      lineHeight: 1.5,
     },
     body2: {
       fontSize: pxToRem(14),
