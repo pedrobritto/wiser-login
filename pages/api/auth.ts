@@ -12,7 +12,7 @@ export default (
 ): void => {
   const { email } = req.body;
 
-  if (email.includes("error@")) {
+  if (email.includes("erro@")) {
     res.status(401).json({
       success: false,
       error_code: "INVALID_CREDENTIALS",

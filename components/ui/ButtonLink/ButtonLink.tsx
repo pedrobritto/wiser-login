@@ -20,7 +20,11 @@ const StyledButtonLink = styled.button`
   text-decoration: underline;
 `;
 
-const ButtonLink: React.FC = (props) => {
+interface ButtonLinkProps {
+  tabIndex?: number;
+}
+
+const ButtonLink: React.FC<ButtonLinkProps> = (props) => {
   return <StyledButtonLink {...props} />;
 };
 

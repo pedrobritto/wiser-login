@@ -1,6 +1,13 @@
 import styled, { css } from "styled-components";
 
-const StyledButton = styled.button`
+interface StyledButtonProps {
+  $elevation?: boolean;
+  $uppercase?: boolean;
+  $loading?: boolean;
+  fullWidth?: boolean;
+}
+
+const StyledButton = styled.button<StyledButtonProps>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -23,7 +30,9 @@ const StyledButton = styled.button`
     opacity ${({ theme }) => theme.transition.default},
     color ${({ theme }) => theme.transition.default};
 
-  ${({ theme }) => theme.typography.button}
+  font-size: ${({ theme }) => theme.typography.button.fontSize};
+  line-height: ${({ theme }) => theme.typography.button.lineHeight};
+  font-weight: ${({ theme }) => theme.typography.button.fontWeight};
 
   color: #fff;
   background: linear-gradient(

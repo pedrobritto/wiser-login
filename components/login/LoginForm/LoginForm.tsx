@@ -66,7 +66,7 @@ const LoginForm: React.FC = () => {
   const { isTabletUp } = useBreakpoints();
 
   const [isLoading, setIsLoading] = useState(false);
-  const [response, setResponse] = useState();
+  const [response, setResponse] = useState(null);
 
   const { register, errors, handleSubmit } = useForm<FormType>({
     defaultValues: {
@@ -142,12 +142,7 @@ const LoginForm: React.FC = () => {
         </FormControl>
 
         <FormButtonContainer>
-          <Button
-            type="submit"
-            loading={isLoading}
-            fullWidth
-            elevation={isTabletUp}
-          >
+          <Button loading={isLoading} fullWidth elevation={isTabletUp}>
             Entrar
           </Button>
         </FormButtonContainer>

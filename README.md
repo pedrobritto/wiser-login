@@ -1,34 +1,43 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Wiser Login
 
-## Getting Started
+## Executando a aplicação localmente
 
-First, run the development server:
+No diretório raíz da aplicação:
 
-```bash
-npm run dev
-# or
-yarn dev
+1. No terminal, execute `yarn` para instalar todas as dependências necessárias;
+2. Em seguida, para executar a aplicação localmente, digite `yarn dev` em seu terminal para rodar uma build de desenvolvimento.
+3. Caso queira rodar a build de produção localmente, execute `yarn build` seguido por `yarn start`.
+
+## Como funciona a validação do formulário
+
+A validação do formulário é feita à partir do `endpoint` `api/auth`.
+
+Caso as credenciais não estejam no formato correto, mensagens de erro serão exibidos abaixo de cada campo do formulário com informações sobre o problema e os dados não serão enviados ao endpoint de validação.
+
+Caso as credenciais estejam corretas, os dados serão enviados ao endpoint de validação.
+
+### Simulando uma resposta de erro
+
+Para simular uma resposta de credenciais inválidas, utilize qualquer e-mail que contenha `erro@` no campo e-mail, como `erro@exemplo.com` e qualquer senha com pelo menos 8 caracteres.
+
+Exemplo de resposta de erro:
+
+```json
+{
+  "success": false,
+  "error_code": "INVALID_CREDENTIALS"
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Simulando uma resposta bem sucedida
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Qualquer e-mail que não contenha `erro@` no campo e-mail retornará uma resposta bem sucedida.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Exemplo de resposta bem sucedida:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```json
+{
+  "success": true,
+  "token": "EXAMPLE_TOKEN"
+}
+```
