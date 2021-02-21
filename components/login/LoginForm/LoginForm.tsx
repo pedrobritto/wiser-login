@@ -4,23 +4,44 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import { formSchema, FormType } from "@/forms/login";
 
-import Button from "@/components/ui/Button/Button";
+import Button from "@/components/ui/Button";
 import FormControl from "@/components/ui/FormControl";
 import FormError from "@/components/ui/FormError";
 import FormInput from "@/components/ui/FormInput";
 import FormLabel from "@/components/ui/FormLabel";
+import useBreakpoints from "@/hooks/useBreakpoints";
 
-const Title = styled.h2`
+const LoginTitle = styled.h2`
   font-size: ${({ theme }) => theme.pxToRem(24)};
   font-weight: 400;
   line-height: 1.4;
+
+  ${({ theme }) => theme.breakpoints.up("tablet")} {
+    font-size: ${({ theme }) => theme.pxToRem(40)};
+    line-height: 1.2;
+  }
 `;
 
-const Subtitle = styled.div`
-  font-size: ${({ theme }) => theme.pxToRem(14)};
+const LoginSubtitle = styled.div`
+  font-size: ${({ theme }) => theme.pxToRem(12)};
   font-weight: 600;
   line-height: 1.5;
   color: ${({ theme }) => theme.palette.primary.light};
+  margin-top: ${({ theme }) => theme.spacingRem(2)};
+
+  ${({ theme }) => theme.breakpoints.up("tablet")} {
+    font-size: ${({ theme }) => theme.pxToRem(16)};
+  }
+`;
+
+const LoginHeader = styled.header`
+  text-align: center;
+  margin-bottom: ${({ theme }) => theme.spacingRem(2)};
+
+  ${({ theme }) => theme.breakpoints.up("tablet")} {
+    text-align: left;
+    max-width: 250px;
+  }
 `;
 
 // -----------------------------------------------------------------------------
@@ -30,16 +51,17 @@ const FormButtonContainer = styled.div`
   transform: translateY(${({ theme }) => theme.spacingRem(3)});
   max-width: ${({ theme }) => theme.pxToRem(170)};
   margin: auto;
-`;
 
-const FormContainer = styled.div`
-  max-width: 260;
-  margin: auto;
+  ${({ theme }) => theme.breakpoints.up("tablet")} {
+    max-width: 100%;
+  }
 `;
 
 // -----------------------------------------------------------------------------
 
 const LoginForm: React.FC = () => {
+  const { isTabletUp } = useBreakpoints();
+
   const { register, errors, handleSubmit } = useForm<FormType>({
     defaultValues: {
       email: "",
@@ -49,27 +71,17 @@ const LoginForm: React.FC = () => {
   });
 
   return (
-    <FormContainer>
-      <header css={{ textAlign: "center" }}>
-        <div
-          css={({ theme }) => ({
-            marginBottom: theme.spacingRem(2),
-          })}
-        >
-          <Title>
-            Olá, seja
-            <br /> bem-vindo!
-          </Title>
-        </div>
+    <div>
+      <LoginHeader>
+        <LoginTitle>
+          Olá, seja
+          <br /> bem-vindo!
+        </LoginTitle>
 
-        <div
-          css={({ theme }) => ({
-            marginBottom: theme.spacingRem(2),
-          })}
-        >
-          <Subtitle>Para acessar a plataforma, faça seu login.</Subtitle>
-        </div>
-      </header>
+        <LoginSubtitle>
+          Para acessar a plataforma, faça seu login.
+        </LoginSubtitle>
+      </LoginHeader>
 
       <form noValidate onSubmit={handleSubmit((data) => console.log(data))}>
         <FormControl>
@@ -97,12 +109,12 @@ const LoginForm: React.FC = () => {
         </FormControl>
 
         <FormButtonContainer>
-          <Button type="submit" fullWidth>
+          <Button type="submit" fullWidth elevation={isTabletUp}>
             Entrar
           </Button>
         </FormButtonContainer>
       </form>
-    </FormContainer>
+    </div>
   );
 };
 

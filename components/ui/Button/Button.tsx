@@ -11,17 +11,15 @@ const StyledButton = styled.button`
   padding: ${({ theme }) => theme.spacingPx(0, 3)};
   height: 48px;
   cursor: pointer;
-  user-select: none;
   vertical-align: middle;
   appearance: none;
-  -webkit-tap-highlight-color: transparent;
 
   color: inherit;
   text-decoration: none;
 
   width: auto;
   border-radius: ${({ theme }) => theme.shape.round};
-  transition: 0.2s;
+  transition: box-shadow ${({ theme }) => theme.transition.default};
 
   ${({ theme }) => theme.typography.button}
 
@@ -40,12 +38,12 @@ const StyledButton = styled.button`
   ${({ $elevation }) =>
     $elevation &&
     css`
-      /* :hover,
+      :hover,
       :focus {
         box-shadow: 0px 1px 3px 0px #cf99db;
       }
 
-      box-shadow: 0px 10px 25px 0px #cf99db; */
+      box-shadow: 0px 10px 25px 0px #cf99db;
     `}
 
   ${({ $uppercase }) =>

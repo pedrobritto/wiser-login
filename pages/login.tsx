@@ -1,34 +1,58 @@
 import Head from "next/head";
-import Container from "@/components/ui/Container/Container";
-import LoginForm from "@/components/login/LoginForm/LoginForm";
+import Image from "next/image";
 
-import styled from "styled-components";
+import useBreakpoints from "@/hooks/useBreakpoints";
 
-const LoginCard = styled.div`
-  background-color: ${({ theme }) => theme.palette.background.light};
-  border-radius: ${({ theme }) => theme.shape.round};
-  padding: ${({ theme }) => theme.spacingRem(3, 3, 0)};
-`;
+import LoginForm from "@/components/login/LoginForm";
+import {
+  LoginSection,
+  LoginCardContainer,
+  LoginCard,
+  LoginGrid,
+  LoginAsideImageContainer,
+} from "@/components/login/Layout";
+import ForgotPassword from "@/components/login/ForgotPassword";
 
 function Login() {
+  const { isTabletUp } = useBreakpoints();
+
   return (
     <>
       <Head>
         <title>Wiser Platform - Login</title>
       </Head>
 
-      <main
-        css={({ theme }) => ({
-          backgroundColor: theme.palette.background.dark,
-          height: "100vh",
-        })}
-      >
-        <Container>
-          <LoginCard>
-            <LoginForm />
-          </LoginCard>
-        </Container>
-      </main>
+      <LoginGrid>
+        <LoginAsideImageContainer>
+          {isTabletUp ? (
+            <Image
+              src="/images/bg@2x.jpg"
+              layout="fill"
+              objectFit="cover"
+              alt="Foto de uma mulher utilizando um computador."
+            />
+          ) : (
+            <Image
+              src="/images/bg@2x.jpg"
+              layout="responsive"
+              objectFit="cover"
+              height={500}
+              width={500}
+              alt="Foto de uma mulher utilizando um computador."
+            />
+          )}
+        </LoginAsideImageContainer>
+
+        <LoginSection>
+          <LoginCardContainer>
+            <LoginCard>
+              <LoginForm />
+            </LoginCard>
+
+            <ForgotPassword />
+          </LoginCardContainer>
+        </LoginSection>
+      </LoginGrid>
     </>
   );
 }

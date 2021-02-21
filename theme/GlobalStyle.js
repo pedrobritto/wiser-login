@@ -23,6 +23,18 @@ const GlobalStyle = createGlobalStyle`
 
   a {
     text-decoration: none;
+    color: inherit;
+  }
+
+
+  a,
+  button {
+    :focus {
+      outline-color: ${({ theme }) => theme.palette.secondary.main};
+      outline-offset: 2px;
+      outline-width: 2px;
+      outline-style: dotted;
+    }
   }
 
   h1 {

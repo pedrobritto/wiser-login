@@ -13,7 +13,7 @@ const FormInput = styled.input<{ hasError?: string | boolean }>`
 
   border: 1px solid ${({ theme }) => theme.palette.primary.light};
   border-radius: ${({ theme }) => theme.shape.round};
-  transition: ${({ theme }) => theme.transition.default};
+  transition: box-shadow ${({ theme }) => theme.transition.default};
 
   outline: 0;
 

@@ -4,11 +4,9 @@ export { spacing, spacingPx, spacingRem, pxToRem };
 import { DefaultTheme } from "styled-components";
 
 const breakpoints = {
-  xs: 400, // phone-portrait down
-  sm: 600, // tablet-portrait up / phone-landscape up
-  md: 800, //
-  lg: 1000, // tablet-landscape up
-  xl: 1200, // desktop up
+  phone: 400,
+  tablet: 700,
+  desktop: 1200,
 };
 
 export const theme: DefaultTheme = {
@@ -16,6 +14,9 @@ export const theme: DefaultTheme = {
     primary: {
       main: "#383E71",
       light: "#989FDB",
+    },
+    secondary: {
+      main: "#9D25B0",
     },
     grey: {
       light: "#ccc",
@@ -46,17 +47,29 @@ export const theme: DefaultTheme = {
       from: "#383E71",
       to: "#9D25B0",
     },
+    background: {
+      from: "#130525",
+      to: "rgba(105, 57, 153, 10%)",
+    },
   },
   breakpoints: {
-    keys: ["xs", "sm", "md", "lg", "xl"],
+    keys: ["phone", "tablet", "desktop"],
     values: breakpoints,
-    up: (key) => `@media (min-width:${breakpoints[key]}px)`,
+    up: (key) => `@media (min-width: ${breakpoints[key]}px)`,
+    upQueryOnly: (key) => `(min-width: ${breakpoints[key]}px)`,
     down: (key) => {
       if (breakpoints[key] > 0) {
-        return `@media (max-width:${breakpoints[key] - 1}px)`;
+        return `@media (max-width: ${breakpoints[key] - 1}px)`;
       }
 
-      return `@media (max-width:${breakpoints[key]}px)`;
+      return `@media (max-width: ${breakpoints[key]}px)`;
+    },
+    downQueryOnly: (key) => {
+      if (breakpoints[key] > 0) {
+        return `(max-width: ${breakpoints[key] - 1}px)`;
+      }
+
+      return `(max-width: ${breakpoints[key]}px)`;
     },
   },
   shape: {

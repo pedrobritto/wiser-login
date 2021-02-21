@@ -14,10 +14,16 @@ interface TypographyProps {
   lineHeight?: string | number;
 }
 
+interface GradientProps {
+  from?: string;
+  to?: string;
+}
+
 declare module "styled-components" {
   export interface DefaultTheme {
     palette: {
       primary: PaletteProps;
+      secondary?: PaletteProps;
       grey: PaletteProps;
       text: PaletteProps;
       common: {
@@ -29,16 +35,16 @@ declare module "styled-components" {
       success: PaletteProps;
     };
     gradients: {
-      default: {
-        from: string;
-        to: string;
-      };
+      default: GradientProps;
+      background: GradientProps;
     };
     breakpoints: {
-      keys: ["xs", "sm", "md", "lg", "xl"];
+      keys: ["phone", "tablet", "desktop"];
       values: { [string]: number };
       up: (key: string) => string;
       down: (key: string) => string;
+      upQueryOnly?: (key: string) => string;
+      downQueryOnly?: (key: string) => string;
     };
     shape: {
       round: string;
