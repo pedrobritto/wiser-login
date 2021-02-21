@@ -1,6 +1,5 @@
 import styled, { css } from "styled-components";
 
-// It'd be great if the reset styles could be shared between variants.
 const StyledButton = styled.button`
   display: inline-flex;
   align-items: center;
@@ -9,8 +8,8 @@ const StyledButton = styled.button`
   background: transparent;
   border: 0;
   margin: 0;
-  /* padding: ${({ theme }) => theme.spacingPx(0, 2)}; */
-  padding: 0 16px;
+  padding: ${({ theme }) => theme.spacingPx(0, 3)};
+  height: 48px;
   cursor: pointer;
   user-select: none;
   vertical-align: middle;
@@ -21,16 +20,39 @@ const StyledButton = styled.button`
   text-decoration: none;
 
   width: auto;
-  border-radius: 4px;
+  border-radius: ${({ theme }) => theme.shape.round};
   transition: 0.2s;
 
-  /* ${({ theme }) => theme.typography.button} */
+  ${({ theme }) => theme.typography.button}
+
+  color: #fff;
+  background: linear-gradient(
+    to right,
+    ${({ theme }) => theme.gradients.default.from},
+    ${({ theme }) => theme.gradients.default.to}
+  );
 
   :disabled {
-    background: #666;
-    color: #fff;
+    opacity: 0.8;
     cursor: not-allowed;
   }
+
+  ${({ $elevation }) =>
+    $elevation &&
+    css`
+      /* :hover,
+      :focus {
+        box-shadow: 0px 1px 3px 0px #cf99db;
+      }
+
+      box-shadow: 0px 10px 25px 0px #cf99db; */
+    `}
+
+  ${({ $uppercase }) =>
+    $uppercase &&
+    css`
+      text-transform: uppercase;
+    `}
 
   ${({ $loading }) =>
     $loading &&
@@ -58,14 +80,14 @@ const SpinnerContainer = styled.div`
 `;
 
 const Spinner = styled.div`
-  width: 32px;
-  height: 32px;
+  width: ${({ theme }) => theme.spacingRem(3)};
+  height: ${({ theme }) => theme.spacingRem(3)};
   position: relative;
   display: inline-block;
 
   border: 2px solid;
   border-radius: 50%;
-  border-color: #666;
+  border-color: #fff;
   border-top-color: transparent;
   animation: spin 1s linear infinite;
 
@@ -80,10 +102,28 @@ const Spinner = styled.div`
   }
 `;
 
-const Button = ({ disabled, loading, fullWidth, children, ...props }) => {
+interface ButtonProps {
+  disabled?: boolean;
+  loading?: boolean;
+  fullWidth?: boolean;
+  uppercase?: boolean;
+  elevation?: boolean;
+}
+
+const Button: React.FunctionComponent<ButtonProps> = ({
+  disabled = false,
+  loading = false,
+  fullWidth = false,
+  uppercase = true,
+  elevation = true,
+  children,
+  ...props
+}) => {
   return (
     <StyledButton
       $loading={loading}
+      $uppercase={uppercase}
+      $elevation={elevation}
       disabled={disabled || loading}
       fullWidth={fullWidth}
       {...props}
