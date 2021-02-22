@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { theme } from "@/theme";
 import { formSchema, FormType } from "@/forms/login";
 import useBreakpoints from "@/hooks/useBreakpoints";
 
@@ -63,6 +62,22 @@ const FormButtonContainer = styled.div`
   }
 `;
 
+const FormAlertContainer = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  margin: 1rem;
+
+  display: flex;
+  justify-content: center;
+
+  ${({ theme }) => theme.breakpoints.up("tablet")} {
+    justify-content: flex-end;
+  }
+`;
+
 // -----------------------------------------------------------------------------
 
 const LoginForm: React.FC = () => {
@@ -95,13 +110,13 @@ const LoginForm: React.FC = () => {
       </LoginHeader>
 
       {authCalled && !authLoading && (
-        <div css={{ marginBottom: theme.spacingRem(2) }}>
+        <FormAlertContainer>
           {authSuccess ? (
             <Alert>Login efetuado com sucesso!</Alert>
           ) : (
             <Alert severity="error">E-mail ou senha incorretos.</Alert>
           )}
-        </div>
+        </FormAlertContainer>
       )}
 
       <form noValidate onSubmit={handleSubmit(onSubmit)}>

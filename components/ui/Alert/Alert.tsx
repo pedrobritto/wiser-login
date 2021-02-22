@@ -7,6 +7,7 @@ const StyledAlert = styled.div<{ $severity: string }>`
 
   color: #fff;
   border-radius: ${({ theme }) => theme.shape.round};
+  box-shadow: 0px 10px 25px -5px #0005;
 
   background-color: ${({ $severity, theme }) => {
     switch ($severity) {
