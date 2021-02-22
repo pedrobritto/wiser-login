@@ -1,18 +1,18 @@
-import { useState } from "react";
-import axios from "axios";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
+import { theme } from "@/theme";
 import { formSchema, FormType } from "@/forms/login";
+import useBreakpoints from "@/hooks/useBreakpoints";
+import useLogin from "@/hooks/useLogin";
 
+import Alert from "@/components/ui/Alert";
 import Button from "@/components/ui/Button";
 import FormControl from "@/components/ui/FormControl";
 import FormError from "@/components/ui/FormError";
 import FormInput from "@/components/ui/FormInput";
 import FormLabel from "@/components/ui/FormLabel";
-import useBreakpoints from "@/hooks/useBreakpoints";
-import Alert from "@/components/ui/Alert";
 
 const LoginTitle = styled.h2`
   font-size: ${({ theme }) => theme.pxToRem(24)};
@@ -47,8 +47,6 @@ const LoginHeader = styled.header`
   }
 `;
 
-// -----------------------------------------------------------------------------
-
 const FormButtonContainer = styled.div`
   text-align: center;
   transform: translateY(${({ theme }) => theme.spacingRem(3)});
@@ -63,10 +61,8 @@ const FormButtonContainer = styled.div`
 // -----------------------------------------------------------------------------
 
 const LoginForm: React.FC = () => {
+  const { isLoading, response, onSubmit } = useLogin();
   const { isTabletUp } = useBreakpoints();
-
-  const [isLoading, setIsLoading] = useState(false);
-  const [response, setResponse] = useState(null);
 
   const { register, errors, handleSubmit } = useForm<FormType>({
     defaultValues: {
@@ -75,23 +71,6 @@ const LoginForm: React.FC = () => {
     },
     resolver: yupResolver(formSchema),
   });
-
-  const onSubmit = async ({ email, password }) => {
-    setIsLoading(true);
-
-    try {
-      const response = await axios.post("/api/auth", {
-        email,
-        password,
-      });
-
-      setResponse(response.data);
-    } catch (error) {
-      setResponse(error.response.data);
-    }
-
-    setIsLoading(false);
-  };
 
   return (
     <div>
@@ -107,7 +86,7 @@ const LoginForm: React.FC = () => {
       </LoginHeader>
 
       {response && (
-        <div css={{ marginBottom: 16 }}>
+        <div css={{ marginBottom: theme.spacingRem(2) }}>
           {response.success ? (
             <Alert>Login efetuado com sucesso!</Alert>
           ) : (

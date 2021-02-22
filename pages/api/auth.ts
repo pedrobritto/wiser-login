@@ -12,15 +12,25 @@ export default (
 ): void => {
   const { email } = req.body;
 
+  if (req.method !== "POST") {
+    res.setHeader("Allow", ["POST"]);
+    res.status(405).end(`Method ${req.method} Not Allowed`);
+    return;
+  }
+
   if (email.includes("erro@")) {
     res.status(401).json({
       success: false,
       error_code: "INVALID_CREDENTIALS",
     });
-  } else {
-    res.status(200).json({
-      success: true,
-      token: "EXAMPLE_TOKEN",
-    });
+
+    return;
   }
+
+  res.status(200).json({
+    success: true,
+    token: "EXAMPLE_TOKEN",
+  });
+
+  return;
 };
