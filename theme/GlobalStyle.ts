@@ -38,27 +38,33 @@ const GlobalStyle = createGlobalStyle`
   }
 
   h1 {
-    ${({ theme }) => theme.typography.h1}
+    font-size: ${({ theme }) => theme.typography.h1.fontSize};
+    font-weight: ${({ theme }) => theme.typography.h1.fontWeight};
   }
 
   h2 {
-    ${({ theme }) => theme.typography.h2}
+    font-size: ${({ theme }) => theme.typography.h2.fontSize};
+    font-weight: ${({ theme }) => theme.typography.h2.fontWeight};
   }
 
   h3 {
-    ${({ theme }) => theme.typography.h3}
+    font-size: ${({ theme }) => theme.typography.h3.fontSize};
+    font-weight: ${({ theme }) => theme.typography.h3.fontWeight};
   }
 
   h4 {
-    ${({ theme }) => theme.typography.h4}
+    font-size: ${({ theme }) => theme.typography.h4.fontSize};
+    font-weight: ${({ theme }) => theme.typography.h4.fontWeight};
   }
 
   h5 {
-    ${({ theme }) => theme.typography.h5}
+    font-size: ${({ theme }) => theme.typography.h5.fontSize};
+    font-weight: ${({ theme }) => theme.typography.h5.fontWeight};
   }
 
   h6 {
-    ${({ theme }) => theme.typography.h6}
+    font-size: ${({ theme }) => theme.typography.h6.fontSize};
+    font-weight: ${({ theme }) => theme.typography.h6.fontWeight};
   }
 
   h1,

@@ -11,7 +11,7 @@ const spacingPxSetup = (spaceValueInPx) => (...values) => {
 
   if (values.length > 4) {
     throw new Error(
-      `You should pass no more than 4 arguments. ${values.length} arguments were provided.`,
+      `You should pass no more than 4 arguments. ${values.length} arguments were provided.`
     );
   }
 
@@ -25,23 +25,21 @@ const spacingPxSetup = (spaceValueInPx) => (...values) => {
 
   if (values.length === 3) {
     return `${calculate(values[0])}px ${calculate(values[1])}px ${calculate(
-      values[2],
+      values[2]
     )}px`;
   }
 
   return `${calculate(values[0])}px ${calculate(values[1])}px ${calculate(
-    values[2],
+    values[2]
   )}px ${calculate(values[3])}px`;
 };
 
-const spacingRemSetup = (spaceValueInPx, remValueInPx) => (
-  ...values
-) => {
+const spacingRemSetup = (spaceValueInPx, remValueInPx) => (...values) => {
   const calculate = (value) => spaceValueInPx * (value / remValueInPx);
 
   if (values.length > 4) {
     throw new Error(
-      `You should pass no more than 4 arguments. ${values.length} arguments were provided.`,
+      `You should pass no more than 4 arguments. ${values.length} arguments were provided.`
     );
   }
 
@@ -55,12 +53,12 @@ const spacingRemSetup = (spaceValueInPx, remValueInPx) => (
 
   if (values.length === 3) {
     return `${calculate(values[0])}rem ${calculate(values[1])}rem ${calculate(
-      values[2],
+      values[2]
     )}rem`;
   }
 
   return `${calculate(values[0])}rem ${calculate(values[1])}rem ${calculate(
-    values[2],
+    values[2]
   )}rem ${calculate(values[3])}rem`;
 };
 
@@ -111,7 +109,7 @@ export const spacingPx = spacingPxSetup(BASE_SPACING_VALUE_IN_PX);
  */
 export const spacingRem = spacingRemSetup(
   BASE_SPACING_VALUE_IN_PX,
-  REM_VALUE_IN_PX,
+  REM_VALUE_IN_PX
 );
 
 /**
